@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 class Coupon(models.Model):
     coupon_code = models.CharField(_('Coupon Code'), max_length=20, unique=True)
     percent = models.PositiveIntegerField(_('percent'), default=0)
-    expiration_date = models.DateField(_('expiration date'))
+    expiration_date = models.DateTimeField(_('expiration date'))
     description = models.TextField(_('description'), blank=True)
 
     def __str__(self):
@@ -20,3 +20,6 @@ class CouponBuyerProduct(models.Model):
     def __str__(self):
         return f'{self.buyer_id.phone}, {self.product_id}'
 
+    class Meta:
+        verbose_name = _('Coupon')
+        verbose_name_plural = _('Coupons')
