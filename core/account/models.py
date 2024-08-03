@@ -9,10 +9,10 @@ from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(_('phone number'), max_length=11, unique=True)
-    Fname = models.CharField(_('first name'), max_length=30, blank=True, null=True)
-    Lname = models.CharField(_('last name'), max_length=30, blank=True, null=True)
-    Address = models.CharField(_('address'), max_length=100, blank=True, null=True)
-    Balance = models.BigIntegerField(_('Balance'), default=0)
+    fname = models.CharField(_('first name'), max_length=30, blank=True, null=True)
+    lname = models.CharField(_('last name'), max_length=30, blank=True, null=True)
+    address = models.CharField(_('address'), max_length=100, blank=True, null=True)
+    balance = models.BigIntegerField(_('Balance'), default=0)
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_active = models.BooleanField(_('active status'), default=True)
     is_seller = models.BooleanField(_('is seller'), default=False)
@@ -26,8 +26,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     def __str__(self):
-        if self.Fname and self.Lname:
-            return f'{self.Fname} {self.Lname}'
+        if self.fname and self.lname:
+            return f'{self.fname} {self.lname}'
         else:
             return self.phone
 
