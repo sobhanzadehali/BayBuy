@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 /core/account/migrations
 /core/shop/migrations
+*.sqlite3
