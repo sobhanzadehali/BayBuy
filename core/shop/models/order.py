@@ -14,12 +14,23 @@ class Order(models.Model):
     def __str__(self):
         return f'{self.buyer_id.__str__()} at : {self.created_date}'
 
+    class Meta:
+        verbose_name = _('order')
+        verbose_name_plural = _('orders')
+
 
 class Item(models.Model):
-    order_id = models.ForeignKey('shop.Order', on_delete=models.CASCADE)
-    product_id = models.ForeignKey('shop.Product', on_delete=models.PROTECT)
+    order_id = models.ForeignKey('shop.Order', verbose_name=_('order'),on_delete=models.CASCADE)
+    product_id = models.ForeignKey('shop.Product', verbose_name=_('product'),on_delete=models.PROTECT)
     amount = models.IntegerField(_('amount'), default=0)
 
     @property
     def total(self):
         return self.product_id.price * self.amount
+
+    def __str__(self):
+        return f'{self.product_id.name}'
+
+    class Meta:
+        verbose_name = _('item')
+        verbose_name_plural = _('items')
