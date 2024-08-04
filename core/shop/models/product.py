@@ -17,6 +17,10 @@ class ProductPictures(models.Model):
     product_id = models.ForeignKey('shop.Product', on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='products/%Y/%m/%d/')
 
+    class Meta:
+        verbose_name = _("Product Picture")
+        verbose_name_plural = _("Product Pictures")
+
 
 class Product(models.Model):
     name = models.CharField(_('name'), max_length=100)
@@ -29,3 +33,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
