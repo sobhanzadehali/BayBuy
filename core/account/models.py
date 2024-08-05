@@ -16,6 +16,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_active = models.BooleanField(_('active status'), default=True)
     is_seller = models.BooleanField(_('is seller'), default=False)
+    is_verified = models.BooleanField(_('is verified'), default=False)
     date_of_birth = models.DateField(_('date of birth'), blank=True, null=True)
     postal_code = models.CharField(_('postal code'), max_length=20, blank=True, null=True)
     joined_date = models.DateField(_('date of joining'), auto_now_add=True)
