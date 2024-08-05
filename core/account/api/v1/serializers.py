@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.contrib.auth.password_validation import validate_password
+from django.core import exceptions
 
 from account.models import CustomUser
 
@@ -14,8 +16,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Passwords must match'
             )
-        else:
-            return data
+        try:
+            validate_password(data['password1'])
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError(e.message)
+        return super().validate(data)
 
     def validate_phone(self, data):
         if data[:2] != '09':
