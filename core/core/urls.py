@@ -23,4 +23,7 @@ urlpatterns = i18n_patterns(
     path(_('admin/'), admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
 )
+urlpatterns += [
+    path('account/', include('account.urls')),
+]
 
