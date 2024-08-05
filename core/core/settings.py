@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'rosetta',
 ]
 
@@ -139,6 +140,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
     ]
 }
