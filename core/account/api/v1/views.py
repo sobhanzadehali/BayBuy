@@ -1,4 +1,5 @@
 from rest_framework import views, generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegistrationSerializer
@@ -20,3 +21,10 @@ class RegistrationApiView(generics.GenericAPIView):
 
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
+
+class TokenLogoutView(views.APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
