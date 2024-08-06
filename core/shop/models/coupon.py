@@ -11,6 +11,10 @@ class Coupon(models.Model):
     def __str__(self):
         return f'{self.coupon_code}, {self.description[:30]}'
 
+    class Meta:
+        verbose_name = _('Coupon')
+        verbose_name_plural = _('Coupons')
+
 
 class CouponBuyerProduct(models.Model):
     coupon_id = models.ForeignKey(Coupon, on_delete=models.CASCADE)
