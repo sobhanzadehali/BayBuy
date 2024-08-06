@@ -7,6 +7,10 @@ from ...models import CustomUser
 
 
 class RegistrationApiView(generics.GenericAPIView):
+    """
+    takes phone number and password. validates phone number and password.
+    if everything was ok, creates a new user and returns its data.
+    """
     serializer_class = RegistrationSerializer
     queryset = CustomUser.objects.all()
 
@@ -23,6 +27,10 @@ class RegistrationApiView(generics.GenericAPIView):
 
 
 class TokenLogoutView(views.APIView):
+    """
+    logs out a user and returns nothing.
+    basically it removes created token.
+    """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
