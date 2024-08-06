@@ -16,6 +16,6 @@ urlpatterns = [
     # logout
     path('token/logout/', views.TokenLogoutView.as_view(), name='user-token-logout'),
     # JWT
-    path('jwt/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('jwt/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('jwt/token/', TokenObtainPairView.as_view(), name='jwt-obtain-pair'),
+    path('jwt/token/refresh/', TokenRefreshView.as_view(), name='jwt-token-refresh'),
 ]
