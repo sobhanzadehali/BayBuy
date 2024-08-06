@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
     'rosetta',
 ]
 
