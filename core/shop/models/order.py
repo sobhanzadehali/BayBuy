@@ -9,7 +9,7 @@ class Order(models.Model):
     post_track_code = models.CharField(_('post track code'), max_length=100, blank=True, null=True)
     total_fee = models.BigIntegerField(_('total fee'), blank=True, null=True)
     is_paid = models.BooleanField(_('is paid'), default=False)
-    paid_date = models.DateField(_('paid date'), blank=True, null=True)
+    paid_date = models.DateTimeField(_('paid date'), blank=True, null=True)
 
     def __str__(self):
         return f'{self.buyer_id.__str__()} at : {self.created_date}'
@@ -20,8 +20,8 @@ class Order(models.Model):
 
 
 class Item(models.Model):
-    order_id = models.ForeignKey('shop.Order', verbose_name=_('order'),on_delete=models.CASCADE)
-    product_id = models.ForeignKey('shop.Product', verbose_name=_('product'),on_delete=models.PROTECT)
+    order_id = models.ForeignKey('shop.Order', verbose_name=_('order'), on_delete=models.CASCADE)
+    product_id = models.ForeignKey('shop.Product', verbose_name=_('product'), on_delete=models.PROTECT)
     amount = models.IntegerField(_('amount'), default=0)
 
     @property
