@@ -32,7 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
 class CouponAdmin(admin.ModelAdmin):
     list_display = ('coupon_code', 'expiration_date')
     list_filter = ('coupon_code',)
-    fieldsets = [(None, {'fields': ['coupon_code', 'expiration_date', 'percent']})]
+    fieldsets = [(None, {'fields': ['seller_id', 'coupon_code', 'expiration_date', 'percent']})]
 
 
 class OrderAdmin(admin.ModelAdmin):

@@ -9,6 +9,10 @@ class Comment(models.Model):
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('created date'))
     is_published = models.BooleanField(default=False, verbose_name=_('is published'))
 
+    def publish(self):
+        self.is_published = True
+        self.save()
+
     def __str__(self):
         return self.body[:60]
 
