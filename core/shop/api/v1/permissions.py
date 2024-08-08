@@ -68,3 +68,13 @@ class OrderItemPermission(permissions.BasePermission):
             return True
         else:
             return False
+
+
+class IsAuthorOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_superuser or request.method in permissions.SAFE_METHODS:
+            return True
+
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_superuser or obj.author_id == request.user:
+            return True

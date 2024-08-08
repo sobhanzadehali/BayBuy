@@ -2,7 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from shop.models import Order, Item
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from ..permissions import OrderPermission, OrderItemPermission
-from ..serializers.order import OrderSerializer, ItemSerializer
+from ..serializers import OrderSerializer, ItemSerializer
 
 
 class OrderViewSet(ModelViewSet):

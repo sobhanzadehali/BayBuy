@@ -2,7 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from shop.api.v1.serializers.coupon import CouponSerializer, SetCouponSerializer
+from shop.api.v1.serializers import CouponSerializer, SetCouponSerializer
 
 from shop.models import Coupon, CouponBuyerProduct
 

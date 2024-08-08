@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status, views
 from rest_framework.permissions import IsAdminUser
 from shop.api.v1.permissions import IsSellerOrReadOnly, IsAdminOrReadOnly
-from shop.api.v1.serializers.product import ProductSerializer, CategorySerializer
+from shop.api.v1.serializers import ProductSerializer, CategorySerializer
 from shop.models import Product, Category
 
 
