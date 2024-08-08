@@ -5,6 +5,13 @@ from shop.models import Item, Order
 class OrderSerializer(serializers.ModelSerializer):
     is_paid = serializers.BooleanField(read_only=True)
     paid_date = serializers.DateTimeField(read_only=True)
+    items = serializers.SerializerMethodField()
+
+    def get_items(self, obj):
+        try:
+            return obj.get_items
+        except:
+            raise serializers.ValidationError("order has no items yet")
 
     class Meta:
         model = Order
@@ -16,7 +23,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
-    order_id = OrderSerializer()
+    order_id = OrderSerializer(read_only=True)
 
     class Meta:
         model = Item
