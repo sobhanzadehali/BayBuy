@@ -1,4 +1,7 @@
 class OrderService:
+    """
+    service class for Orders
+    """
 
     @staticmethod
     def get_items(order_obj):

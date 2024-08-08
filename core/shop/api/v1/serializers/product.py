@@ -12,18 +12,20 @@ class CategorySerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
 
-    class Meta:
-        model = Product
-        fields = '__all__'
-
     def validate(self, attrs):
         if attrs.get('seller_id') != self.context.get('request').user:
             raise serializers.ValidationError('authenticated user and product owner do not match')
-        return attrs
-
-    def create(self, validated_data):
-        if not validated_data.get('seller_id').is_seller:
+        if not attrs.get('seller_id').is_seller:
             raise serializers.ValidationError('user has not permission to create product, become seller first.')
+        return super().validate(attrs)
+
+    def create(self, **validated_data):
+        validated_data['seller_id'] = self.context.get('request').user
+        return super().create(validated_data)
+
+    class Meta:
+        model = Product
+        fields = '__all__'
 
 
 class ProductPicturesSerializer(serializers.ModelSerializer):
@@ -42,4 +44,3 @@ class ProductPicturesSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'product pictures can only have up to five images'
             )
-
