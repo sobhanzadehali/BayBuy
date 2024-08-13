@@ -1,7 +1,6 @@
 from django.urls import path
 from rest_framework import routers
-from shop.api.v1.views import ProductViewSet, CategoryViewSet, OrderViewSet, OrderItemViewSet, CouponViewSet, \
-    SetCouponViewSet, CommentViewSet
+from shop.api.v1.views import *
 
 app_name = 'api-v1'
 
@@ -14,6 +13,8 @@ router.register(r'coupons', CouponViewSet, basename='coupons')
 router.register(r'set-coupons', SetCouponViewSet, basename='set-coupons')
 router.register(r'comments', CommentViewSet, basename='comments')
 
-urlpatterns = []
+urlpatterns = [
+    path('seller/orders/', SellerOrdersAPIView.as_view(), name='seller-order'),
+]
 
 urlpatterns += router.urls
