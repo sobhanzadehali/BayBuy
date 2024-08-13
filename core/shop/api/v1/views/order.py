@@ -37,4 +37,3 @@ class SellerOrdersAPIView(APIView):
         queryset = Item.objects.filter(order_id__is_processed=False).filter(product_id__seller_id=request.user)
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
