@@ -45,19 +45,19 @@ class SellerInfoApiView(generics.GenericAPIView):
 
     def get(self, request):
         """
+        use this view to get seller's info
         get empty form to send identification docs, if not sent before
         and will show seller identification data
         """
 
-        if request.user.is_seller:
-            data = {'data': 'you are already seller'}
-            return Response(data, status=status.HTTP_403_FORBIDDEN)
-        else:
-            seller_info = SellerInfo.objects.filter(seller_id=request.user)
-            serializer = self.serializer_class(seller_info, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        seller_info = SellerInfo.objects.filter(seller_id=request.user)
+        serializer = self.serializer_class(seller_info, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        """
+        use this view to send identification docs, if not sent before
+        """
         if request.user.is_seller:
             data = {'data': 'you are already seller'}
             return Response(data, status=status.HTTP_403_FORBIDDEN)
