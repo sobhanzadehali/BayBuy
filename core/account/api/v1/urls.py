@@ -18,4 +18,7 @@ urlpatterns = [
     # JWT
     path('jwt/token/', TokenObtainPairView.as_view(), name='jwt-obtain-pair'),
     path('jwt/token/refresh/', TokenRefreshView.as_view(), name='jwt-token-refresh'),
+
+    # seller identification
+    path('sell/', views.SellerInfoApiView.as_view(), name='seller-info'),
 ]

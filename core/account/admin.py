@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from account.models import CustomUser
+from account.models import CustomUser, SellerInfo
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from shop.admin import CouponBuyerProductInLine
 
@@ -33,3 +33,4 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(SellerInfo)

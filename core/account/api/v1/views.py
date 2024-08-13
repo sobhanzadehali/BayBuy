@@ -2,8 +2,8 @@ from rest_framework import views, generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RegistrationSerializer
-from ...models import CustomUser
+from .serializers import RegistrationSerializer, SellerSerializer
+from ...models import CustomUser, SellerInfo
 
 
 class RegistrationApiView(generics.GenericAPIView):
@@ -36,3 +36,38 @@ class TokenLogoutView(views.APIView):
     def post(self, request):
         request.user.auth_token.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class SellerInfoApiView(generics.GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = SellerSerializer
+    queryset = SellerInfo.objects.all()
+
+    def get(self, request):
+        """
+        get empty form to send identification docs, if not sent before
+        and will show seller identification data
+        """
+
+        if request.user.is_seller:
+            data = {'data': 'you are already seller'}
+            return Response(data, status=status.HTTP_403_FORBIDDEN)
+        else:
+            seller_info = SellerInfo.objects.filter(seller_id=request.user)
+            serializer = self.serializer_class(seller_info, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        if request.user.is_seller:
+            data = {'data': 'you are already seller'}
+            return Response(data, status=status.HTTP_403_FORBIDDEN)
+        serializer = self.serializer_class(data={
+            'seller_id': request.user,
+            'video': request.FILES['video'],
+            'id_card': request.FILES['card_id'],
+            'id_number': request.data['id_number'],
+        })
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
