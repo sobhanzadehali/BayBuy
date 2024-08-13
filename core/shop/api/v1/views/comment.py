@@ -9,7 +9,6 @@ class CommentViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
     serializer_class = CommentSerializer
 
-
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser:

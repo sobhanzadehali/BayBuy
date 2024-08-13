@@ -14,6 +14,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     permission_classes = [IsAdminUser, IsSellerOrReadOnly]
     serializer_class = ProductSerializer
+    lookup_field = 'slug'
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
