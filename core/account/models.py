@@ -38,10 +38,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class SellerInfo(models.Model):
-    seller_id = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='seller_info')
-    video = models.FileField(upload_to='seller/videos/')
-    id_card = models.ImageField(upload_to='seller/cards/')
-    id_number = models.CharField(max_length=10, unique=True)
+    seller_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name=_('seller'),
+                                     related_name='seller_info')
+    video = models.FileField(upload_to='seller/videos/', verbose_name=_('video'))
+    id_card = models.ImageField(upload_to='seller/cards/', verbose_name=_('id card image'))
+    id_number = models.CharField(max_length=10, unique=True, verbose_name=_('id card number'))
 
     def __str__(self):
         return self.id_number

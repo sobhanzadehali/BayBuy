@@ -32,5 +32,20 @@ class CustomUserAdmin(UserAdmin):
     inlines = (CouponBuyerProductInLine,)
 
 
+class StackedUserInline(admin.StackedInline):
+    model = CustomUser
+
+
+class SellerInfoAdmin(admin.ModelAdmin):
+    model = SellerInfo
+    list_display = ('seller_id', )
+    list_filter = ('seller_id',)
+    search_fields = ('seller_id',)
+    ordering = ('seller_id',)
+    fieldsets = [
+        (None, {'fields': ('seller_id', 'video', 'id_card', 'id_number',)}),
+    ]
+
+
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(SellerInfo)
+admin.site.register(SellerInfo, SellerInfoAdmin)

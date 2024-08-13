@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 09:20+0000\n"
-"PO-Revision-Date: 2024-08-13 09:16+0000\n"
+"POT-Creation-Date: 2024-08-13 17:11+0330\n"
+"PO-Revision-Date: 2024-08-13 13:44+0000\n"
 "Last-Translator: Anonymous User <anonymous@user.tld>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -56,172 +56,203 @@ msgid "is seller"
 msgstr "فروشنده هست؟"
 
 #: account/models.py:19
+msgid "is verified"
+msgstr "تایید شده؟"
+
+#: account/models.py:20
 msgid "date of birth"
 msgstr "تاریخ تولد"
 
-#: account/models.py:20
+#: account/models.py:21
 msgid "postal code"
 msgstr "کد پستی"
 
-#: account/models.py:21
+#: account/models.py:22
 msgid "date of joining"
 msgstr "تاریخ عضویت"
 
-#: account/models.py:22
+#: account/models.py:23
 msgid "date of update"
 msgstr "آخرین بروز رسانی"
 
-#: account/models.py:35
+#: account/models.py:36
 msgid "user"
 msgstr "کاربر"
 
-#: account/models.py:36
+#: account/models.py:37
 msgid "users"
 msgstr "کاربر ها"
 
-#: core/urls.py:23
-msgid "admin/"
-msgstr "admin"
+#: account/models.py:41 shop/models/product.py:30
+msgid "seller"
+msgstr "فروشنده"
+
+#: account/models.py:43
+msgid "video"
+msgstr "ویدئو"
+
+#: account/models.py:44
+msgid "id card image"
+msgstr "عکس کارت ملی"
+
+#: account/models.py:45
+msgid "id card number"
+msgstr "کد ملی"
+
+#: account/models.py:51 account/models.py:52
+#| msgid "seller"
+msgid "sellers info"
+msgstr "اطلاعات فروشنده"
 
 #: shop/models/comment.py:6
 msgid "author"
 msgstr "نویسنده"
 
-#: shop/models/comment.py:7 shop/models/order.py:24
-#| msgid "Product"
+#: shop/models/comment.py:7 shop/models/order.py:39
 msgid "product"
 msgstr "محصول"
 
 #: shop/models/comment.py:8
-#| msgid "Comment"
 msgid "comment body"
 msgstr "کامنت"
 
-#: shop/models/comment.py:9 shop/models/order.py:7
+#: shop/models/comment.py:9 shop/models/order.py:8
 msgid "created date"
 msgstr "تاریخ ایجاد"
 
 #: shop/models/comment.py:10
-#| msgid "is paid"
 msgid "is published"
 msgstr "پرداخت شده؟"
 
-#: shop/models/comment.py:16
+#: shop/models/comment.py:20
 msgid "Comment"
 msgstr "کامنت"
 
-#: shop/models/comment.py:17
+#: shop/models/comment.py:21
 msgid "Comments"
 msgstr "کامنت ها"
 
-#: shop/models/coupon.py:6
+#: shop/models/coupon.py:7
 msgid "Coupon Code"
 msgstr "کد تخفیف"
 
-#: shop/models/coupon.py:7
+#: shop/models/coupon.py:8
 msgid "percent"
 msgstr "درصد تخفیف"
 
-#: shop/models/coupon.py:8
+#: shop/models/coupon.py:9
 msgid "expiration date"
 msgstr "تاریخ انقضا"
 
-#: shop/models/coupon.py:9 shop/models/product.py:32
+#: shop/models/coupon.py:10 shop/models/product.py:34
 msgid "description"
 msgstr "توضیحات"
 
-#: shop/models/coupon.py:15 shop/models/coupon.py:28
+#: shop/models/coupon.py:16
 msgid "Coupon"
 msgstr "کوپن"
 
-#: shop/models/coupon.py:16 shop/models/coupon.py:29
+#: shop/models/coupon.py:17
 msgid "Coupons"
 msgstr "کوپن ها"
 
-#: shop/models/order.py:8
+#: shop/models/order.py:9
 msgid "delivery date"
 msgstr "تاریخ تحویل"
 
-#: shop/models/order.py:9
+#: shop/models/order.py:10
 msgid "post track code"
 msgstr "کد رهگیری پست"
 
-#: shop/models/order.py:10
+#: shop/models/order.py:11
 msgid "total fee"
 msgstr "هزینه کل"
 
-#: shop/models/order.py:11
+#: shop/models/order.py:12
 msgid "is paid"
 msgstr "پرداخت شده؟"
 
-#: shop/models/order.py:12
+#: shop/models/order.py:13
+msgid "is processed"
+msgstr "آماده شده؟"
+
+#: shop/models/order.py:14
+#| msgid "is seller"
+msgid "is sent"
+msgstr "ارسال شده؟"
+
+#: shop/models/order.py:15
+#| msgid "delivery date"
+msgid "is delivered"
+msgstr "تحویل داده شده؟"
+
+#: shop/models/order.py:16
 msgid "paid date"
 msgstr "تاریخ پرداخت"
 
-#: shop/models/order.py:18 shop/models/order.py:23
+#: shop/models/order.py:32 shop/models/order.py:38
 msgid "order"
 msgstr "سفارش"
 
-#: shop/models/order.py:19
+#: shop/models/order.py:33
 msgid "orders"
 msgstr "سفارش ها"
 
-#: shop/models/order.py:25
+#: shop/models/order.py:41
 msgid "amount"
 msgstr "تعداد"
 
-#: shop/models/order.py:35
+#: shop/models/order.py:51
 msgid "item"
 msgstr "آیتم خرید"
 
-#: shop/models/order.py:36
+#: shop/models/order.py:52
 msgid "items"
 msgstr "آیتم های خرید"
 
-#: shop/models/product.py:12
+#: shop/models/product.py:14
 msgid "Category"
 msgstr "دسته بندی"
 
-#: shop/models/product.py:13
+#: shop/models/product.py:15
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: shop/models/product.py:21
+#: shop/models/product.py:23
 msgid "Product Picture"
 msgstr "عکس محصول"
 
-#: shop/models/product.py:22
+#: shop/models/product.py:24
 msgid "Product Pictures"
 msgstr " عکس های محصول"
 
-#: shop/models/product.py:26
+#: shop/models/product.py:28
 msgid "name"
 msgstr "نام"
 
-#: shop/models/product.py:27
+#: shop/models/product.py:29
 msgid "slug"
 msgstr "شناسه ی روزنامه ای"
 
-#: shop/models/product.py:28
-msgid "seller"
-msgstr "فروشنده"
-
-#: shop/models/product.py:29
+#: shop/models/product.py:31
 msgid "category"
 msgstr "دسته بندی"
 
-#: shop/models/product.py:30
+#: shop/models/product.py:32
 msgid "price"
 msgstr "قیمت"
 
-#: shop/models/product.py:31
+#: shop/models/product.py:33
 msgid "available in stock"
 msgstr "مقدار موجودی"
 
-#: shop/models/product.py:38
+#: shop/models/product.py:40
 msgid "Product"
 msgstr "محصول"
 
-#: shop/models/product.py:39
+#: shop/models/product.py:41
 msgid "Products"
 msgstr "محصولات"
+
+#~ msgid "admin/"
+#~ msgstr "admin"

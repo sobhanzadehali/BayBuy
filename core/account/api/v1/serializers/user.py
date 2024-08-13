@@ -10,6 +10,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class SellerSerializer(serializers.ModelSerializer):
+    seller_id = serializers.PrimaryKeyRelatedField(read_only=True)
 
     def validate(self, attrs):
         id_number = attrs.get('id_number')
@@ -30,6 +31,10 @@ class SellerSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "id_number is not valid. double check before trying again!"
             )
+
+    def create(self, **validated_data):
+        validated_data['seller_id'] = self.context.get('request').user
+        return super().create(validated_data)
 
     class Meta:
         model = SellerInfo
