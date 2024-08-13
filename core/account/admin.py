@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from account.models import CustomUser
+from account.models import CustomUser, SellerInfo
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from shop.admin import CouponBuyerProductInLine
 
@@ -32,4 +32,20 @@ class CustomUserAdmin(UserAdmin):
     inlines = (CouponBuyerProductInLine,)
 
 
+class StackedUserInline(admin.StackedInline):
+    model = CustomUser
+
+
+class SellerInfoAdmin(admin.ModelAdmin):
+    model = SellerInfo
+    list_display = ('seller_id', )
+    list_filter = ('seller_id',)
+    search_fields = ('seller_id',)
+    ordering = ('seller_id',)
+    fieldsets = [
+        (None, {'fields': ('seller_id', 'video', 'id_card', 'id_number',)}),
+    ]
+
+
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(SellerInfo, SellerInfoAdmin)

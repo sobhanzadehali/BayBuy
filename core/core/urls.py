@@ -37,7 +37,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = i18n_patterns(
-    path(_('admin/'), admin.site.urls),
+    path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
 )
 urlpatterns += [

@@ -10,6 +10,9 @@ class Order(models.Model):
     post_track_code = models.CharField(_('post track code'), max_length=100, blank=True, null=True)
     total_fee = models.BigIntegerField(_('total fee'), blank=True, null=True)
     is_paid = models.BooleanField(_('is paid'), default=False)
+    is_processed = models.BooleanField(_('is processed'), default=False)
+    is_sent = models.BooleanField(_('is sent'), default=False)
+    is_delivered = models.BooleanField(_('is delivered'), default=False)
     paid_date = models.DateTimeField(_('paid date'), blank=True, null=True)
 
     def __str__(self):
@@ -28,11 +31,13 @@ class Order(models.Model):
     class Meta:
         verbose_name = _('order')
         verbose_name_plural = _('orders')
+        ordering = ('-created_date', 'is_processed')
 
 
 class Item(models.Model):
     order_id = models.ForeignKey('shop.Order', verbose_name=_('order'), on_delete=models.CASCADE)
-    product_id = models.ForeignKey('shop.Product', verbose_name=_('product'), on_delete=models.PROTECT)
+    product_id = models.ForeignKey('shop.Product', verbose_name=_('product'), related_name='products',
+                                   on_delete=models.PROTECT)
     amount = models.IntegerField(_('amount'), default=0)
 
     @property
