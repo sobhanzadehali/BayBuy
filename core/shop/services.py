@@ -1,7 +1,11 @@
+from django.apps import apps
+
+
 class OrderService:
     """
     service class for Orders
     """
+
 
     @staticmethod
     def get_items(order_obj):
@@ -10,18 +14,9 @@ class OrderService:
         :param order_obj:
         :return: quetyset object
         """
+        Item = apps.get_model('shop', 'Item')
         print("From Inside Order Service")  # TODO: check if this does work
         return Item.objects.filter(order_id=order_obj)
-
-    @staticmethod
-    def pay(order_obj):
-        """
-        it has to do paying stuf for order
-
-        :param order_obj:
-        :return:
-        """
-        pass  # TODO: make web gateway proceed paying for order
 
     @staticmethod
     def total(order_obj):

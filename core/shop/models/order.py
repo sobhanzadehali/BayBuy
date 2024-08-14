@@ -25,8 +25,9 @@ class Order(models.Model):
     def get_items(self):
         return OrderService.get_items(self)
 
-    def pay(self):
-        OrderService.pay(self)
+    def pay(self, paid_date):
+        self.is_paid = True
+        self.paid_date = paid_date
 
     class Meta:
         verbose_name = _('order')
