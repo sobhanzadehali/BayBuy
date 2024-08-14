@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'rosetta',
+    'zibalpay.apps.ZibalpayConfig'
 ]
 
 MIDDLEWARE = [
@@ -143,10 +144,22 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '200/day',
+        'user': '1000/day'
+    }
 }
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=25),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=60),
 }
+# Zibalpay config
+ORDER_MODEL = 'shop.Order'
+ZIBALPAY_MERCHANT = "Here goes your api merchant"
+ZIBALPAY_CALLBACK_URL = "http://yourdomain.com/pay/api/v1/callback"
