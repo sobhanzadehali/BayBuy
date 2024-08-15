@@ -7,6 +7,10 @@ from shop.admin import CouponBuyerProductInLine
 
 # Register your models here.
 
+class SellerInfoInline(admin.TabularInline):
+    model = SellerInfo
+    extra = 1
+
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
@@ -29,7 +33,7 @@ class CustomUserAdmin(UserAdmin):
     )
     search_fields = ('phone', 'fname', 'lname')
     ordering = ('phone',)
-    inlines = (CouponBuyerProductInLine,)
+    inlines = (CouponBuyerProductInLine, SellerInfoInline)
 
 
 class StackedUserInline(admin.StackedInline):
@@ -38,7 +42,7 @@ class StackedUserInline(admin.StackedInline):
 
 class SellerInfoAdmin(admin.ModelAdmin):
     model = SellerInfo
-    list_display = ('seller_id', )
+    list_display = ('seller_id',)
     list_filter = ('seller_id',)
     search_fields = ('seller_id',)
     ordering = ('seller_id',)
