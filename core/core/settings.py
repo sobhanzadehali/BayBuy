@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'rosetta',
-    'zibalpay.apps.ZibalpayConfig'
+    'zibal.apps.ZibalConfig',
 ]
 
 MIDDLEWARE = [
