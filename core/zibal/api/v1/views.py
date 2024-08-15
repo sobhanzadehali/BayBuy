@@ -30,6 +30,11 @@ Order = find_model(settings.ORDER_MODEL)
 @api_view(['GET'])
 @permission_classes(IsAuthenticated, )
 def send_pay_request(request, order_id):
+    """
+    this view is for sending pay request to zibal and it shows a payment link if everything was good.
+    :param request:
+    :param order_id:
+    """
     phone = request.user.phone if request.user.phone else request.user.mobile
 
     try:
@@ -45,7 +50,8 @@ def send_pay_request(request, order_id):
         'callbackUrl': settings.ZIBALPAY_CALLBACK_URL,
         'mobile': phone,
     }
-    response = requests.post('https://gateway.zibal.ir/v1/request', data=data, headers={'Content-Type': 'application/json'})
+    response = requests.post('https://gateway.zibal.ir/v1/request', data=data,
+                             headers={'Content-Type': 'application/json'})
     response = json.loads(response.content)
     if response.result == 100:
         data = {
@@ -59,6 +65,14 @@ def send_pay_request(request, order_id):
 @api_view(['GET'])
 @throttle_classes([AnonRateThrottle, ])
 def callback_view(request):
+    """
+    this view is used by zibal to send get request for notifying a payment has been
+    created. also hackers can try sending request to this endpoint but it will be verified with zibal verification
+    api.
+    it has a throttle policy so a non user(per IP) only can send 200 requests a day.
+    :param request:
+    :return: Respone object
+    """
     trackId = request.GET.get('trackId')
     orderId = request.GET.get('orderId')
     payStatus = request.GET.get('status')
@@ -70,7 +84,7 @@ def callback_view(request):
             'trackId': trackId,
         }
         response = requests.post('https://gateway.zibal.ir/v1/verify',
-                                   data=data, headers={'Content-Type': 'application/json'})
+                                 data=data, headers={'Content-Type': 'application/json'})
         serilizer_class = ZibalpaySerializer(data=response.json())
         if serilizer_class.is_valid():
             if serilizer_class.validated_data['trackId'] == trackId and serilizer_class.validated_data['result'] == 100:
@@ -81,4 +95,3 @@ def callback_view(request):
             return Response(serilizer_class.data, status=status.HTTP_200_OK)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
-
