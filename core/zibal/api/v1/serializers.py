@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from zibalpay.models import Zibalpay
+from zibal.models import Zibalpay
 
 
 class ZibalpaySerializer(serializers.ModelSerializer):
