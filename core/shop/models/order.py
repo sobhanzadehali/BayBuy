@@ -8,6 +8,8 @@ class Order(models.Model):
     created_date = models.DateTimeField(_('created date'), auto_now_add=True)
     delivery_date = models.DateField(_('delivery date'), blank=True, null=True)
     post_track_code = models.CharField(_('post track code'), max_length=100, blank=True, null=True)
+    coupon_id = models.ForeignKey('shop.Coupon', on_delete=models.PROTECT, verbose_name=_('coupon'), blank=True,
+                                  null=True)
     total_fee = models.BigIntegerField(_('total fee'), blank=True, null=True)
     is_paid = models.BooleanField(_('is paid'), default=False)
     is_processed = models.BooleanField(_('is processed'), default=False)
