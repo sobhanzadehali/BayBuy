@@ -47,7 +47,7 @@ class SellerInfoAdmin(admin.ModelAdmin):
     search_fields = ('seller_id',)
     ordering = ('seller_id',)
     fieldsets = [
-        (None, {'fields': ('seller_id', 'video', 'id_card', 'id_number',)}),
+        (None, {'fields': ('seller_id', 'video', 'id_card', 'id_number', 'is_verified')}),
     ]
 
 

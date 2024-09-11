@@ -43,6 +43,7 @@ class SellerInfo(models.Model):
     video = models.FileField(upload_to='seller/videos/', verbose_name=_('video'))
     id_card = models.ImageField(upload_to='seller/cards/', verbose_name=_('id card image'))
     id_number = models.CharField(max_length=10, unique=True, verbose_name=_('id card number'))
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.id_number
